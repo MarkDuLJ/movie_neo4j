@@ -110,9 +110,15 @@ export function combinePersonAndRel(person, relation) {
   ) {
     let arr = relation.map((r, i) => {
       let obj = {};
-      const name = r.type;
-      const type = person[i].properties.name;
-      obj[name] = type;
+      const type = r.type;
+      let name;
+      if (person[i].properties.name) {
+        name = person[i].properties.name;
+      }
+      if (person[i].properties.title) {
+        name = [person[i].properties.title, person[i].properties.released];
+      }
+      obj[type] = name;
       return obj;
     });
 

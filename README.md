@@ -18,5 +18,6 @@ The page will reload when you make changes.\
 
 http://localhost:5000/api/movies/Ninja%20Assassin
 http://localhost:5000/api/movies
+http://localhost:5000/api/people/Rain
 
 ### package descriptions
