@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -6,10 +6,23 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 
+import neo4jApi from "../api/neo4jApi";
+
 const DropDownMenu = () => {
   const classes = useStyles();
-  const [movieList, setMovieList] = useState("");
+  const [movieList, setMovieList] = useState([]);
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    const getMovies = async () => {
+      try {
+        const response = await neo4jApi.getMoviesList();
+        setMovieList(response.map((r) => r.title));
+      } catch {
+        console.log("error");
+      }
+    };
+    getMovies();
+  }, []);
   const handleChange = (event) => {
     setMovieList(event.target.value);
   };
@@ -22,7 +35,7 @@ const DropDownMenu = () => {
     setOpen(true);
   };
 
-  const arr = Array.from(Array(20).keys());
+  // const arr = Array.from(Array(20).keys());
   return (
     <div>
       <Button className={classes.button} onClick={handleOpen}>
@@ -42,9 +55,9 @@ const DropDownMenu = () => {
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {arr.map((a) => (
-            <MenuItem value={a} key={a}>
-              {a}
+          {movieList.map((movie) => (
+            <MenuItem value={movie} key={movie}>
+              {movie}
             </MenuItem>
           ))}
         </Select>
