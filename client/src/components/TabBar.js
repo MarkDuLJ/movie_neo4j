@@ -21,6 +21,7 @@ const TabBar = () => {
         textColor="primary"
         centered
       >
+        {/*tab can't add Link???*/}
         <Tab label="Movies" />
         <Tab label="Movie Details" />
       </Tabs>

@@ -23,7 +23,7 @@ const Movies = () => {
       }
     };
     getMovies();
-  });
+  }, []);
 
   const onSlideChange = (newValue) => {
     const newMovieArray = getMoviesByYear(movieList, newValue);

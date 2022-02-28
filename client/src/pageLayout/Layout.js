@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import Footer from "./Footer";
-import Head from "./Head";
+import Header from "./Header";
 import TabBar from "../components/TabBar";
 
 const Layout = ({ children }) => {
@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
-      <Head />
+      <Header />
       <main>
         <div className={classes.heroContent}>
           <Container maxWidth="sm">

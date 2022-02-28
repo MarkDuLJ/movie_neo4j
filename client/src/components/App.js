@@ -1,12 +1,12 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
+
 import Layout from "../pageLayout/Layout";
-import Movies from "../pages/Movies";
 
 const App = () => {
   return (
     <Layout>
-      <h2>Hello</h2>
-      <Movies />
+      <Outlet />
     </Layout>
   );
 };

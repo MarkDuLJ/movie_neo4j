@@ -6,7 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-const Head = () => {
+const Header = () => {
   const classes = useStyles();
   return (
     <>
@@ -29,4 +29,4 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default Head;
+export default Header;
