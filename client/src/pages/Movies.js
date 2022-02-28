@@ -4,6 +4,7 @@ import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import { Box } from "@material-ui/core";
+import { Outlet } from "react-router-dom";
 
 import neo4jApi from "../api/neo4jApi";
 import DropDownMenu from "../components/DropDownMenu";
@@ -45,6 +46,7 @@ const Movies = () => {
           <DropDownMenu movieList={movieList} />
         </Box>
       </Grid>
+      <Outlet />
     </Container>
   );
 };

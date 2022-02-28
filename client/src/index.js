@@ -5,13 +5,16 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import App from "./components/App";
 import Movies from "./pages/Movies";
 import People from "./pages/People";
+import MovieDetail from "./pages/MovieDetail";
 
 const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />}>
-        <Route path="movies" element={<Movies />} />
+        <Route path="movies" element={<Movies />}>
+          <Route path=":title" element={<MovieDetail />} />
+        </Route>
         <Route path="people" element={<People />} />
       </Route>
       <Route
