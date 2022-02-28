@@ -20,15 +20,19 @@ router.get("/", async (req, res, next) => {
     next(e);
   }
 });
-router.get("/", async (req, res, next) => {
+router.get("/:title", async (req, res, next) => {
   try {
-    const { q, sort, order, limit, skip } = getPagination(req, MOVIE_SORT);
+    const driver = getDriver();
+    const movieService = new MovieService(driver);
 
-    const movieService = new MovieService(getDriver());
+    const movie = await movieService.findByTitle(req.params.title);
+    if (!movie) {
+      return next(
+        new NotFoundError(`Movie with title:${req.params.title} not found`)
+      );
+    }
 
-    const movies = await movieService.all(sort, order, limit, skip);
-
-    res.json(movies);
+    res.json(movie);
   } catch (e) {
     next(e);
   }

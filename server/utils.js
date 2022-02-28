@@ -94,3 +94,31 @@ function valueToNativeType(value) {
   return value;
 }
 // end::toNativeTypes[]
+
+/**
+ * Convert an 2 arrays to new array
+ *
+ * @param {any} person
+ * @param {any} relation
+ * @returns {any} arr
+ */
+export function combinePersonAndRel(person, relation) {
+  if (
+    Array.isArray(person) &&
+    Array.isArray(relation) &&
+    person.length === relation.length
+  ) {
+    let arr = relation.map((r, i) => {
+      let obj = {};
+      const name = r.type;
+      const type = person[i].properties.name;
+      obj[name] = type;
+      return obj;
+    });
+
+    return arr;
+  }
+
+  return person;
+}
+// end::combinePersonAndRel[]
