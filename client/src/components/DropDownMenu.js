@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -6,25 +6,17 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import Button from "@material-ui/core/Button";
 
-import neo4jApi from "../api/neo4jApi";
+import { getMovieTitles } from "../utils";
 
-const DropDownMenu = () => {
+const DropDownMenu = ({ movieList }) => {
   const classes = useStyles();
-  const [movieList, setMovieList] = useState([]);
+  const list = getMovieTitles(movieList);
+
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    const getMovies = async () => {
-      try {
-        const response = await neo4jApi.getMoviesList();
-        setMovieList(response.map((r) => r.title));
-      } catch {
-        console.log("error");
-      }
-    };
-    getMovies();
-  }, []);
+  const [value, setValue] = useState("");
+
   const handleChange = (event) => {
-    setMovieList(event.target.value);
+    setValue(event.target.value);
   };
 
   const handleClose = () => {
@@ -35,7 +27,6 @@ const DropDownMenu = () => {
     setOpen(true);
   };
 
-  // const arr = Array.from(Array(20).keys());
   return (
     <div>
       <Button className={classes.button} onClick={handleOpen}>
@@ -49,17 +40,18 @@ const DropDownMenu = () => {
           open={open}
           onClose={handleClose}
           onOpen={handleOpen}
-          value={movieList}
+          value={value}
           onChange={handleChange}
         >
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          {movieList.map((movie) => (
-            <MenuItem value={movie} key={movie}>
-              {movie}
-            </MenuItem>
-          ))}
+          {movieList &&
+            list.map((movie) => (
+              <MenuItem value={movie} key={movie}>
+                {movie}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
     </div>

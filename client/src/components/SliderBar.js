@@ -1,34 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Slider from "@material-ui/core/Slider";
 
-// import List from "../components/List";
-import neo4jApi from "../api/neo4jApi";
-
-const SliderBar = () => {
+const SliderBar = ({ movieList, onSlideChange }) => {
   const classes = useStyles();
-  const getMovies = async () => {
-    try {
-      const response = await neo4jApi.getMoviesList();
-      setMovieList(response);
-    } catch {
-      console.log("error");
-    }
-  };
-  const array = getMovies();
-  const [movieList, setMovieList] = useState(array);
-  useEffect(() => {
-    console.log("redddd....");
-  }, [movieList]);
+  // useEffect(() => {}, [movieList]);
+
   // const min = movieContext[movieContext.length - 1].released;
   // const max = movieContext[0].released;
   const handleChange = (event, newValue) => {
-    const newMovieArray = movieList.filter(
-      (movie) => movie.released <= newValue
-    );
-    console.log(newMovieArray);
-    setMovieList(newMovieArray);
+    onSlideChange(newValue);
   };
 
   const valuetext = (value) => {
