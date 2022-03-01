@@ -5,7 +5,7 @@ import Container from "@material-ui/core/Container";
 
 import Footer from "./Footer";
 import Header from "./Header";
-import TabBar from "../components/TabBar";
+// import TabBar from "../components/TabBar";
 
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -37,7 +37,6 @@ const Layout = ({ children }) => {
               other functions, please take a look!
             </Typography>
           </Container>
-          <TabBar />
         </div>
         {children}
       </main>
