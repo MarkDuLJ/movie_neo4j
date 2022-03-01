@@ -18,3 +18,17 @@ export const groupObj = (vals) => {
   });
   return obj;
 };
+
+export const mergeObjArr = (vals) => {
+  let array = [];
+  vals.forEach((val) => {
+    const arr = [];
+    const key = Object.keys(val)[0];
+    const value = Object.values(val)[0];
+    arr.push(value[0]);
+    arr.push(key);
+    arr.push(value[1]);
+    array.push(arr);
+  });
+  return array;
+};
