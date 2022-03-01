@@ -9,5 +9,9 @@ const neo4jApi = {
     const url = "movies/" + title;
     return axiosClient.get(url);
   },
+  getMoviesByPerson: (person) => {
+    const url = "people/" + person;
+    return axiosClient.get(url);
+  },
 };
 export default neo4jApi;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 import neo4jApi from "../api/neo4jApi";
 import { groupObj } from "../utils";
@@ -25,7 +25,9 @@ const MovieDetail = () => {
             <h2>{role}</h2>
             <ul>
               {obj[role].map((person, j) => (
-                <li key={j}>{person}</li>
+                <li key={j}>
+                  <Link to={`/people/${person}`}>{person}</Link>
+                </li>
               ))}
             </ul>
           </div>
